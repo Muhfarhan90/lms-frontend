@@ -1,25 +1,38 @@
 import type { Metadata } from 'next';
+import { Card, CardContent, CardHeader, CardTitle } from '@components/ui';
 
 export const metadata: Metadata = { title: 'Dashboard Admin | LMS' };
 
 export default function AdminDashboardPage() {
   return (
     <div>
-      <h1 className="mb-6 text-2xl font-bold text-gray-800">Dashboard Admin</h1>
+      <h1 className="mb-6 text-2xl font-bold text-foreground">Dashboard Admin</h1>
       {/* TODO: Tambahkan statistik admin (total user, kursus, dll) */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-          <p className="text-sm text-gray-500">Total Pengguna</p>
-          <p className="mt-1 text-3xl font-bold text-gray-800">—</p>
-        </div>
-        <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-          <p className="text-sm text-gray-500">Total Kursus</p>
-          <p className="mt-1 text-3xl font-bold text-gray-800">—</p>
-        </div>
-        <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-          <p className="text-sm text-gray-500">Total Pendaftaran</p>
-          <p className="mt-1 text-3xl font-bold text-gray-800">—</p>
-        </div>
+        <Card>
+          <CardHeader className="gap-0 pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">Total Pengguna</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-3xl font-bold text-foreground">—</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="gap-0 pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">Total Kursus</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-3xl font-bold text-foreground">—</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="gap-0 pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">Total Pendaftaran</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-3xl font-bold text-foreground">—</p>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

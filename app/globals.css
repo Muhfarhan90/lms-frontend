@@ -1,26 +1,86 @@
 @import "tailwindcss";
+@plugin "tailwindcss-animate";
 
+/*
+  Cara ubah palet nanti:
+  - Light mode: edit nilai di :root
+  - Dark mode: edit nilai di .dark
+  Format HSL channels: H S% L%
+  Contoh: --primary: 168 63% 31%;
+  - Ubah angka pertama (H) untuk geser hue warna
+  - Ubah S% untuk tingkat kejenuhan
+  - Ubah L% untuk terang/gelap
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: 0 0% 100%;
+  --foreground: 168 55% 14%;
+  --card: 0 0% 100%;
+  --card-foreground: 168 55% 14%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 168 55% 14%;
+  --primary: 168 63% 31%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 165 30% 94%;
+  --secondary-foreground: 168 55% 14%;
+  --muted: 165 24% 95%;
+  --muted-foreground: 168 24% 36%;
+  --accent: 45 87% 46%;
+  --accent-foreground: 44 78% 16%;
+  --destructive: 0 76% 52%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 165 20% 85%;
+  --input: 165 20% 85%;
+  --ring: 168 63% 31%;
+}
+
+.dark {
+  --background: 167 42% 8%;
+  --foreground: 160 25% 92%;
+  --card: 167 40% 12%;
+  --card-foreground: 160 25% 92%;
+  --popover: 167 40% 12%;
+  --popover-foreground: 160 25% 92%;
+  --primary: 166 58% 42%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 166 30% 20%;
+  --secondary-foreground: 160 25% 92%;
+  --muted: 166 26% 18%;
+  --muted-foreground: 163 18% 72%;
+  --accent: 45 84% 56%;
+  --accent-foreground: 44 78% 16%;
+  --destructive: 0 72% 56%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 166 24% 22%;
+  --input: 166 24% 22%;
+  --ring: 166 58% 42%;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }

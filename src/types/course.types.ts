@@ -23,7 +23,7 @@ export interface CreateCourseDto {
   status: CourseStatus;
 }
 
-export interface UpdateCourseDto extends Partial<CreateCourseDto> {}
+export type UpdateCourseDto = Partial<CreateCourseDto>;
 
 export interface Lesson {
   id: number;

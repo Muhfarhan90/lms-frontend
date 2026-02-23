@@ -18,21 +18,21 @@ export function Navbar({ title }: NavbarProps) {
   const user = useAuthStore((state) => state.user);
 
   return (
-    <header className="flex h-16 items-center justify-between border-b border-gray-200 bg-white px-6">
-      <h1 className="text-base font-semibold text-gray-800">
+    <header className="flex h-16 items-center justify-between border-b border-border bg-card px-6">
+      <h1 className="text-base font-semibold text-foreground">
         {title ?? 'Dashboard'}
       </h1>
       <div className="flex items-center gap-4">
-        <button className="rounded-full p-2 text-gray-500 hover:bg-gray-100">
+        <button className="rounded-full p-2 text-muted-foreground hover:bg-muted">
           <Bell className="h-5 w-5" />
         </button>
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
             {user?.name?.[0]?.toUpperCase() ?? 'U'}
           </div>
           <div className="hidden sm:block">
-            <p className="text-xs font-semibold text-gray-800">{user?.name}</p>
-            <p className="text-xs text-gray-500">{user?.role ? roleLabel[user.role] : ''}</p>
+            <p className="text-xs font-semibold text-foreground">{user?.name}</p>
+            <p className="text-xs text-muted-foreground">{user?.role ? roleLabel[user.role] : ''}</p>
           </div>
         </div>
       </div>

@@ -25,7 +25,7 @@ export function LoginForm() {
       noValidate
     >
       {error && (
-        <div className="rounded-lg bg-red-50 p-3 text-sm text-red-600">
+        <div className="rounded-lg bg-destructive/15 p-3 text-sm text-destructive">
           {error}
         </div>
       )}
@@ -54,9 +54,9 @@ export function LoginForm() {
         Masuk
       </Button>
 
-      <p className="text-center text-sm text-gray-600">
+      <p className="text-center text-sm text-muted-foreground">
         Belum punya akun?{' '}
-        <Link href={ROUTES.REGISTER} className="font-medium text-blue-600 hover:underline">
+        <Link href={ROUTES.REGISTER} className="font-medium text-primary hover:underline">
           Daftar
         </Link>
       </p>

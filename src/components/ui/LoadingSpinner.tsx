@@ -14,7 +14,7 @@ export function LoadingSpinner({ size = 'md', className, fullScreen }: LoadingSp
 
   const spinner = (
     <svg
-      className={cn('animate-spin text-blue-600', sizes[size], className)}
+      className={cn('animate-spin text-primary', sizes[size], className)}
       fill="none"
       viewBox="0 0 24 24"
     >
