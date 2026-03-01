@@ -50,6 +50,15 @@ export function LoginForm() {
         {...register('password')}
       />
 
+      <div className="-mt-1 text-right">
+        <Link
+          href={ROUTES.FORGOT_PASSWORD}
+          className="text-xs font-medium text-primary hover:underline"
+        >
+          Lupa password?
+        </Link>
+      </div>
+
       <Button type="submit" isLoading={isLoading} className="mt-2">
         Masuk
       </Button>

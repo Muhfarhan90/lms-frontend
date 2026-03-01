@@ -14,18 +14,30 @@ export function middleware(request: NextRequest) {
   const token = request.cookies.get(APP_CONFIG.TOKEN_KEY)?.value;
   const { pathname } = request.nextUrl;
 
-  const isAuthPage =
-    pathname.startsWith("/login") || pathname.startsWith("/register");
+  const guestOnlyPages = [
+    ROUTES.LOGIN,
+    ROUTES.REGISTER,
+    ROUTES.FORGOT_PASSWORD,
+    "/reset-password",
+  ];
+
+  const publicPages = [...guestOnlyPages, ROUTES.VERIFY_EMAIL];
+
+  const isGuestOnlyPage = guestOnlyPages.some((route) =>
+    pathname.startsWith(route),
+  );
+
+  const isPublicPage = publicPages.some((route) => pathname.startsWith(route));
 
   // Sudah login tapi akses halaman auth → redirect ke student dashboard (default)
-  if (token && isAuthPage) {
+  if (token && isGuestOnlyPage) {
     return NextResponse.redirect(
       new URL(ROUTES.STUDENT.DASHBOARD, request.url),
     );
   }
 
   // Belum login tapi akses halaman protected → redirect ke login
-  if (!token && !isAuthPage) {
+  if (!token && !isPublicPage) {
     return NextResponse.redirect(new URL(ROUTES.LOGIN, request.url));
   }
 
