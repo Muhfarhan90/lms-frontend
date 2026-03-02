@@ -50,7 +50,7 @@ export function Sidebar() {
   const pathname = usePathname();
   const { user, logout } = useAuth();
 
-  const navItems = user ? navByRole[user.role] : [];
+  const navItems = user?.role?.name ? (navByRole[user.role.name] ?? []) : [];
 
   return (
     <aside className="flex h-screen w-64 flex-col border-r border-border bg-card">

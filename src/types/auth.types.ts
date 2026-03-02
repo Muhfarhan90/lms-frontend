@@ -1,13 +1,22 @@
 import { Role } from "@enums/role.enum";
 
+export interface UserRole {
+  id: number;
+  name: Role; // "admin" | "instructor" | "student"
+}
+
 export interface User {
   id: number;
   name: string;
   email: string;
-  role: Role;
-  avatar?: string;
+  role: UserRole; // object { id, name } dari UserResource
+  nisn?: string | null;
+  phone?: string | null;
+  address?: string | null;
+  school_origin?: string | null;
+  avatar?: string | null;
+  is_active?: boolean;
   created_at: string;
-  updated_at: string;
 }
 
 export interface LoginCredentials {
@@ -20,7 +29,9 @@ export interface RegisterData {
   email: string;
   password: string;
   password_confirmation: string;
-  role: Role;
+  role?: Role;
+  nisn?: string | null;
+  school_origin?: string | null;
 }
 
 export interface AuthTokens {

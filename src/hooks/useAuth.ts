@@ -28,13 +28,17 @@ export function useAuth() {
     setError(null);
     try {
       const { data: res } = await authService.login(credentials);
-      setAuth(res.data.user, res.data.token.access_token);
+      // Token dari Sanctum bisa berupa plain string atau object { access_token }
+      const token =
+        typeof res.data.token === 'string'
+          ? res.data.token
+          : (res.data.token as { access_token?: string }).access_token ?? String(res.data.token);
+      setAuth(res.data.user, token);
 
       // Redirect berdasarkan role
-      const role = res.data.user.role;
-      if (role === Role.ADMIN) router.push(ROUTES.ADMIN.DASHBOARD);
-      else if (role === Role.INSTRUCTOR)
-        router.push(ROUTES.INSTRUCTOR.DASHBOARD);
+      const roleName = res.data.user.role?.name;
+      if (roleName === Role.ADMIN) router.push(ROUTES.ADMIN.DASHBOARD);
+      else if (roleName === Role.INSTRUCTOR) router.push(ROUTES.INSTRUCTOR.DASHBOARD);
       else router.push(ROUTES.STUDENT.DASHBOARD);
     } catch (err: unknown) {
       const axiosErr = err as { response?: { data?: { message?: string } } };
@@ -49,8 +53,14 @@ export function useAuth() {
     setError(null);
     try {
       const { data: res } = await authService.register(data);
-      setAuth(res.data.user, res.data.token.access_token);
-      router.push(ROUTES.STUDENT.DASHBOARD);
+      // Token dari Sanctum bisa berupa plain string atau object
+      const token =
+        typeof res.data.token === 'string'
+          ? res.data.token
+          : (res.data.token as { access_token?: string }).access_token ?? String(res.data.token);
+      setAuth(res.data.user, token);
+      // Setelah register, arahkan ke halaman verifikasi email
+      router.push(ROUTES.VERIFY_EMAIL);
     } catch (err: unknown) {
       const axiosErr = err as { response?: { data?: { message?: string } } };
       setError(axiosErr?.response?.data?.message ?? "Registrasi gagal");

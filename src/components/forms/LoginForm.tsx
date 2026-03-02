@@ -18,15 +18,33 @@ export function LoginForm() {
     formState: { errors },
   } = useForm<LoginFormData>({ resolver: zodResolver(loginSchema) });
 
+  const isEmailNotVerified = error === 'EMAIL_NOT_VERIFIED';
+
   return (
     <form
       onSubmit={handleSubmit(login)}
       className="flex flex-col gap-4"
       noValidate
     >
-      {error && (
+      {error && !isEmailNotVerified && (
         <div className="rounded-lg bg-destructive/15 p-3 text-sm text-destructive">
           {error}
+        </div>
+      )}
+
+      {isEmailNotVerified && (
+        <div className="rounded-lg bg-amber-50 border border-amber-200 p-3 text-sm text-amber-800">
+          <p className="font-medium mb-1">Email belum diverifikasi</p>
+          <p>
+            Silakan periksa inbox email Anda dan klik tautan verifikasi, atau{' '}
+            <Link
+              href={ROUTES.VERIFY_EMAIL}
+              className="font-semibold underline hover:text-amber-900"
+            >
+              klik di sini untuk kirim ulang email verifikasi
+            </Link>
+            .
+          </p>
         </div>
       )}
 

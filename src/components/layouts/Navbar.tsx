@@ -32,7 +32,7 @@ export function Navbar({ title }: NavbarProps) {
           </div>
           <div className="hidden sm:block">
             <p className="text-xs font-semibold text-foreground">{user?.name}</p>
-            <p className="text-xs text-muted-foreground">{user?.role ? roleLabel[user.role] : ''}</p>
+            <p className="text-xs text-muted-foreground">{user?.role?.name ? roleLabel[user.role.name] : ''}</p>
           </div>
         </div>
       </div>
